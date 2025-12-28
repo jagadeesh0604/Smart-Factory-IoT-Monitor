@@ -8,7 +8,7 @@ import os
 # CONFIGURATION & API KEYS
 # ==========================================
 # Replace with your actual ThingSpeak Write API Key
-API_KEY = 'YOUR_THINGSPEAK_WRITE_KEY'
+API_KEY = 'YOUR_WRITE_API_KEY_HERE'
 URL = 'https://api.thingspeak.com/update'
 LOG_FILE = "factory_sensor_logs.csv"
 
@@ -37,15 +37,15 @@ try:
     while True:
         # 1. SIMULATE PHYSICAL BEHAVIOR (Digital Twin Logic)
         if machine_status == 1:  # RUNNING
-            current_temp += random.uniform(0.5, 1.8)
-            current_humidity += random.uniform(-0.3, 0.3)
+            current_temp += random.uniform(1.5, 4.0)
+            current_humidity += random.uniform(-2.0, 2.0)
             # High temp increases chance of a Fault
             if current_temp > 82:
                 if random.random() < 0.25: # 25% chance to trigger fault
                     machine_status = 3
 
         elif machine_status == 2:  # IDLE (Cooling down)
-            current_temp -= random.uniform(0.8, 1.5)
+            current_temp -= random.uniform(2.0, 5.0)
             if current_temp < 42: machine_status = 1 # Restart once cooled
 
         elif machine_status == 3:  # FAULT (Overheated)
@@ -85,7 +85,7 @@ try:
             print(f"[{timestamp}] Connection Failed: {e}")
 
         # ThingSpeak Free Tier requires a delay (usually 15-20 seconds)
-        time.sleep(20)
+        time.sleep(16)
 
 except KeyboardInterrupt:
     print("\nSimulation terminated by user. Data saved to CSV.")
