@@ -24,3 +24,5 @@ An end-to-end IoT monitoring solution that simulates a industrial CNC machine's 
 📊 System Architecture
 
 The system simulates an industrial environment where machine status and temperature are correlated. When the "machine" is in a Running state, temperature rises; once thresholds are exceeded, the system triggers a Fault state to simulate emergency shutdown procedures.
+
+![Smart Factory Dashboard](dashboard_ss.png)
